@@ -1,0 +1,80 @@
+﻿<h3>@Model.currEGroup</h3>
+<div class="row">
+    <div class=" col-md-3"></div>
+
+    <div class=" col-md-6">
+        @{
+            foreach (var exam in Model.getAllExam)
+            {
+                <h3>@exam.DateTime.ToShortDateString()</h3>
+                <div class="row">
+                    <div class="col">
+                        <h3>@exam.LesNum</h3> 
+                    </div>
+                    <div class="col-11">
+                        @{
+                            if (exam.AllGroup == true)
+                            {
+                                <div>
+                                    <div class=" alesson text-center text-white">
+                                        <p>@exam.LesName</p>
+                                        <p>@exam.LecName</p>
+                                        <p>@exam.Room</p>
+                                        <p>@exam.Build</p>
+                                        <p>@exam.LesType</p>
+                                    </div>
+                                </div>
+                            }
+                            else if (exam.AllGroup == false && exam.NumSubGroup == 0)
+                            {
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class=" alesson text-center text-white">
+                                            <p>@exam.LesName</p>
+                                            <p>@exam.LecName</p>
+                                            <p>@exam.Room</p>
+                                            <p>@exam.Build</p>
+                                            <p>@exam.LesType</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class=" dlesson">
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            }
+                            else if (exam.AllGroup == false && exam.NumSubGroup == 1)
+                            {
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class=" dlesson">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class=" alesson text-center text-white">
+                                            <p>@exam.LesName</p>
+                                            <p>@exam.LecName</p>
+                                            <p>@exam.Room</p>
+                                            <p>@exam.Build</p>
+                                            <p>@exam.LesType</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+                
+
+
+            }
+        }
+    </div>
+
+    <div class=" col-md-3"></div>
+
+</div>

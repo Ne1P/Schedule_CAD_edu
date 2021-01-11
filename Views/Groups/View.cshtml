@@ -1,0 +1,158 @@
+﻿<div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+        @{
+            int dayId = 1;
+            int countLes = 0;
+            List<Lesson> parL = new List<Lesson>();
+            foreach (var day in Model.getAllDay)
+            {
+                <h3>@day</h3>
+                List<Lesson> dayLes = new List<Lesson>();
+                foreach (var les in Model.getAllles)
+                {
+                    if (les.Day == dayId)
+                    {
+                        dayLes.Add(les);
+                        if (les.LesNum > countLes)
+                        {
+                            countLes = les.LesNum;
+                        }
+                    }
+
+                }
+                for (int i = 1; i <= countLes; i++)
+                {
+                    foreach (var les in dayLes)
+                    {
+                        if (les.LesNum == i)
+                        {
+                            if (les.AllTime == true && les.AllGroup == true)
+                            {
+                                <div class=" row">
+                                    <div class="col-2">
+                                        <h3>@i</h3>
+                                    </div>
+                                    <div class="col-10">
+                                        <p>@les.LesName</p>
+                                        <p>@les.LecName</p>
+                                        <p>@les.Room</p>
+                                        <p>@les.Build</p>
+                                        <p>@les.LesType</p>
+
+
+
+
+                                    </div>
+                                </div>
+                            }
+                            else if (les.AllTime == false && les.AllGroup == true)
+                            {
+                                if (les.TimeSet == 0)
+                                {
+                                    parL.Add(les);
+                                    foreach (var lesP in dayLes)
+                                    {
+                                        if (lesP.LesNum == les.LesNum && lesP.TimeSet == 1)
+                                        {
+                                            parL.Add(lesP);
+                                            dayLes.Remove(lesP);
+                                        }
+                                    }
+                                }
+                                else if (les.TimeSet == 1)
+                                {
+                                    foreach (var lesP in dayLes)
+                                    {
+                                        if (lesP.LesNum == les.LesNum && lesP.TimeSet == 0)
+                                        {
+                                            parL.Add(lesP);
+                                            dayLes.Remove(lesP);
+                                        }
+                                    }
+                                    parL.Add(les);
+                                }
+
+                                if (parL.Count > 1)
+                                {
+                                    <div class=" row">
+                                        <div class="col-2">
+                                            <h3>@i</h3>
+                                        </div>
+                                        <div class="col-10">
+                                            @{
+                                                foreach (var res in parL)
+                                                {
+                                                    <div>
+                                                        <p>@res.LesName</p>
+                                                        <p>@res.LecName</p>
+                                                        <p>@res.Room</p>
+                                                        <p>@res.Build</p>
+                                                        <p>@res.LesType</p>
+                                                    </div>
+                                                }
+                                            }
+
+
+                                        </div>
+                                    </div>
+                                                    
+                                                }else if (parL.Count == 1)
+                                                {
+                                                    foreach (var res in parL)
+                                                    {
+                                                        if (res.TimeSet == 0)
+                                                        {
+                                            <div>
+                                                <p>@res.LesName</p>
+                                                <p>@res.LecName</p>
+                                                <p>@res.Room</p>
+                                                <p>@res.Build</p>
+                                                <p>@res.LesType</p>
+                                            </div>
+                                            <div>
+                                                <p></p>
+                                                <p></p>
+                                                <p></p>
+                                                <p></p>
+                                                <p></p>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div>
+                                                <p></p>
+                                                <p></p>
+                                                <p></p>
+                                                <p></p>
+                                                <p></p>
+                                            </div>
+                                            <div>
+                                                <p>@res.LesName</p>
+                                                <p>@res.LecName</p>
+                                                <p>@res.Room</p>
+                                                <p>@res.Build</p>
+                                                <p>@res.LesType</p>
+                                            </div>
+
+
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                    parL.Clear();
+                                                                }
+                                                            }
+
+                                                        }
+                                                    }
+
+                                                    dayId++;
+                                                    dayLes.Clear();
+                                                }
+
+
+        }
+
+    </div>
+    <div class="col-3"></div>
+    </div>

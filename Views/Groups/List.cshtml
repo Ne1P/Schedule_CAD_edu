@@ -1,0 +1,1527 @@
+﻿
+<div class="row">
+    <div class="col-md-2">
+        <h1>@Model.curWeek</h1>
+    </div>
+
+    <div class="col-md-8">
+
+        @{
+            List<Lesson> List = new List<Lesson>();
+
+            int maxLes = 0;
+            foreach (var les in Model.getAllles)
+            {
+                List.Add(les);
+                if (les.LesNum > maxLes)
+                {
+                    maxLes = les.LesNum;
+                }
+
+            }
+
+            int countDay = 1;
+            int countLes = 1;
+            int currWeek = Model.curWeek;
+
+            foreach (var day in Model.getAllDay)
+            {
+        <div class="col-12 day">
+            @{
+                <h3>@day</h3>
+                for (int j = 0; j < maxLes; j++)
+                {
+
+                    for (int i = 0; i < List.Count; i++)
+                    {
+                        if (List[i].Day == countDay && List[i].LesNum == countLes)
+                        {
+
+                            switch (List[i].AllTime)
+                            {
+                                case true:
+                                    switch (List[i].AllGroup)
+                                    {
+                                        case true:
+
+                                            <div class="row">
+                                                <div class="col-md-1">
+                                                    <p>@List[i].LesNum</p>
+                                                </div>
+
+                                                <div class="col-md-11 lesson-container">
+                                                    <div class="text-center alesson">
+                                                        @List[i].LesName
+                                                        @{if (!List[i].LesName.Equals(""))
+                                                            {
+                                                                <br>
+                                                            }
+                                                        }
+                                                        @List[i].LecName
+                                                        @{if (!List[i].LecName.Equals(""))
+                                                            {
+                                                                <br>
+                                                            }
+                                                        }
+                                                        @List[i].Room
+                                                        @{if (!List[i].Room.Equals(""))
+                                                            {
+                                                                <br>
+                                                            }
+                                                        }
+
+                                                        @List[i].Build
+                                                        @{if (!List[i].Build.Equals(""))
+                                                            {
+                                                                <br>
+                                                            }
+                                                        }
+                                                        @List[i].LesType
+                                                        @{if (!List[i].LesType.Equals(""))
+                                                            {
+                                                                <br>
+                                                            }
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            List.Remove(List[i]);
+                                            break;
+                                        case false:
+
+                                            <div class="row">
+                                                <div class="col-md-1">
+                                                    <p>@List[i].LesNum</p>
+                                                </div>
+                                                <div class="col-md-11 lesson-container">
+                                                    <div class="row">
+                                                        @{
+                                                            switch (List[i].NumSubGroup)
+                                                            {
+                                                                case 0:
+
+                                                                    <div class="col text-center alesson">
+                                                                        @List[i].LesName
+                                                                        @{if (!List[i].LesName.Equals(""))
+                                                                            {
+                                                                                <br>
+                                                                            }
+                                                                        }
+                                                                        @List[i].LecName
+                                                                        @{if (!List[i].LecName.Equals(""))
+                                                                            {
+                                                                                <br>
+                                                                            }
+                                                                        }
+                                                                        @List[i].Room
+                                                                        @{if (!List[i].Room.Equals(""))
+                                                                            {
+                                                                                <br>
+                                                                            }
+                                                                        }
+
+                                                                        @List[i].Build
+                                                                        @{if (!List[i].Build.Equals(""))
+                                                                            {
+                                                                                <br>
+                                                                            }
+                                                                        }
+                                                                        @List[i].LesType
+                                                                        @{if (!List[i].LesType.Equals(""))
+                                                                            {
+                                                                                <br>
+                                                                            }
+                                                                        }
+                                                                    </div>
+
+
+
+                                                                    bool actual = false;
+                                                                    for (int k = 0; k < List.Count; k++)
+                                                                    {
+                                                                        if (List[i].Day == List[k].Day && List[i].LesNum == List[k].LesNum && List[k].NumSubGroup == 1)
+                                                                        {
+                                                                            switch (List[k].AllTime)
+                                                                            {
+                                                                                case true:
+                                                                                    <div class="col text-center alesson">
+                                                                                        @List[k].LesName
+                                                                                        @{if (!List[k].LesName.Equals(""))
+                                                                                            {
+                                                                                                <br>
+                                                                                            }
+                                                                                        }
+                                                                                        @List[k].LecName
+                                                                                        @{if (!List[k].LecName.Equals(""))
+                                                                                            {
+                                                                                                <br>
+                                                                                            }
+                                                                                        }
+                                                                                        @List[k].Room
+                                                                                        @{if (!List[k].Room.Equals(""))
+                                                                                            {
+                                                                                                <br>
+                                                                                            }
+                                                                                        }
+
+                                                                                        @List[k].Build
+                                                                                        @{if (!List[k].Build.Equals(""))
+                                                                                            {
+                                                                                                <br>
+                                                                                            }
+                                                                                        }
+                                                                                        @List[k].LesType
+                                                                                        @{if (!List[k].LesType.Equals(""))
+                                                                                            {
+                                                                                                <br>
+                                                                                            }
+                                                                                        }
+                                                                                    </div>
+
+                                                                                    actual = true;
+                                                                                    List.Remove(List[k]);
+                                                                                    break;
+                                                                                case false:
+                                                                                    switch (List[k].TimeSet)
+                                                                                    {
+                                                                                        case 0:
+                                                                                            <div class="col text-center alesson">
+                                                                                                @List[k].LesName
+                                                                                                @{if (!List[k].LesName.Equals(""))
+                                                                                                    {
+                                                                                                        <br>
+                                                                                                    }
+                                                                                                }
+                                                                                                @List[k].LecName
+                                                                                                @{if (!List[k].LecName.Equals(""))
+                                                                                                    {
+                                                                                                        <br>
+                                                                                                    }
+                                                                                                }
+                                                                                                @List[k].Room
+                                                                                                @{if (!List[k].Room.Equals(""))
+                                                                                                    {
+                                                                                                        <br>
+                                                                                                    }
+                                                                                                }
+
+                                                                                                @List[k].Build
+                                                                                                @{if (!List[k].Build.Equals(""))
+                                                                                                    {
+                                                                                                        <br>
+                                                                                                    }
+                                                                                                }
+                                                                                                @List[k].LesType
+                                                                                                @{if (!List[k].LesType.Equals(""))
+                                                                                                    {
+                                                                                                        <br>
+                                                                                                    }
+                                                                                                }
+                                                                                            </div>
+
+                                                                                            actual = true;
+                                                                                            List.Remove(List[k]);
+                                                                                            bool act = false;
+                                                                                            for (int l = 0; l < List.Count; l++)
+                                                                                            {
+                                                                                                if (List[l].Day == List[k].Day && List[l].LesNum == List[k].LesNum && List[l].NumSubGroup == List[k].NumSubGroup && List[l].TimeSet == 1)
+                                                                                                {
+                                                                                                    <div class="col text-center alesson">
+                                                                                                        @List[l].LesName
+                                                                                                        @{if (!List[l].LesName.Equals(""))
+                                                                                                            {
+                                                                                                                <br>
+                                                                                                            }
+                                                                                                        }
+                                                                                                        @List[l].LecName
+                                                                                                        @{if (!List[l].LecName.Equals(""))
+                                                                                                            {
+                                                                                                                <br>
+                                                                                                            }
+                                                                                                        }
+                                                                                                        @List[l].Room
+                                                                                                        @{if (!List[l].Room.Equals(""))
+                                                                                                            {
+                                                                                                                <br>
+                                                                                                            }
+                                                                                                        }
+
+                                                                                                        @List[l].Build
+                                                                                                        @{if (!List[l].Build.Equals(""))
+                                                                                                            {
+                                                                                                                <br>
+                                                                                                            }
+                                                                                                        }
+                                                                                                        @List[l].LesType
+                                                                                                        @{if (!List[l].LesType.Equals(""))
+                                                                                                            {
+                                                                                                                <br>
+                                                                                                            }
+                                                                                                        }
+                                                                                                    </div>
+                                                                                                    List.Remove(List[l]);
+                                                                                                    act = true;
+                                                                                                }
+                                                                                            }
+                                                                                            if (act == false)
+                                                                                            {
+                                                                                                <div class="col text-center dlesson"></div>
+                                                                                            }
+
+                                                                                            break;
+                                                                                        case 1:
+                                                                                            act = false;
+                                                                                            for (int l = 0; l < List.Count; l++)
+                                                                                            {
+                                                                                                if (List[l].Day == List[k].Day && List[l].LesNum == List[k].LesNum && List[l].NumSubGroup == List[k].NumSubGroup && List[l].TimeSet == 0)
+                                                                                                {
+                                                                                                    <div class="col text-center alesson">
+                                                                                                        @List[l].LesName
+                                                                                                        @{if (!List[l].LesName.Equals(""))
+                                                                                                            {
+                                                                                                                <br>
+                                                                                                            }
+                                                                                                        }
+                                                                                                        @List[l].LecName
+                                                                                                        @{if (!List[l].LecName.Equals(""))
+                                                                                                            {
+                                                                                                                <br>
+                                                                                                            }
+                                                                                                        }
+                                                                                                        @List[l].Room
+                                                                                                        @{if (!List[l].Room.Equals(""))
+                                                                                                            {
+                                                                                                                <br>
+                                                                                                            }
+                                                                                                        }
+
+                                                                                                        @List[l].Build
+                                                                                                        @{if (!List[l].Build.Equals(""))
+                                                                                                            {
+                                                                                                                <br>
+                                                                                                            }
+                                                                                                        }
+                                                                                                        @List[l].LesType
+                                                                                                        @{if (!List[l].LesType.Equals(""))
+                                                                                                            {
+                                                                                                                <br>
+                                                                                                            }
+                                                                                                        }
+                                                                                                    </div>
+                                                                                                    List.Remove(List[l]);
+                                                                                                    act = true;
+                                                                                                }
+                                                                                            }
+                                                                                            if (act == false)
+                                                                                            {
+                                                                                                <div class="col text-center dlesson"></div>
+                                                                                            }
+
+                                                                                            <div class="col text-center alesson">
+                                                                                                @List[k].LesName
+                                                                                                @{if (!List[k].LesName.Equals(""))
+                                                                                                    {
+                                                                                                        <br>
+                                                                                                    }
+                                                                                                }
+                                                                                                @List[k].LecName
+                                                                                                @{if (!List[k].LecName.Equals(""))
+                                                                                                    {
+                                                                                                        <br>
+                                                                                                    }
+                                                                                                }
+                                                                                                @List[k].Room
+                                                                                                @{if (!List[k].Room.Equals(""))
+                                                                                                    {
+                                                                                                        <br>
+                                                                                                    }
+                                                                                                }
+
+                                                                                                @List[k].Build
+                                                                                                @{if (!List[k].Build.Equals(""))
+                                                                                                    {
+                                                                                                        <br>
+                                                                                                    }
+                                                                                                }
+                                                                                                @List[k].LesType
+                                                                                                @{if (!List[k].LesType.Equals(""))
+                                                                                                    {
+                                                                                                        <br>
+                                                                                                    }
+                                                                                                }
+                                                                                            </div>
+
+                                                                                            actual = true;
+                                                                                            List.Remove(List[k]);
+
+                                                                                            break;
+                                                                                    }
+                                                                                    break;
+
+                                                                            }
+
+                                                                        }
+                                                                    }
+                                                                    if (actual == false)
+                                                                    {
+                                                                        <div class="col text-center dlesson"></div>
+                                                                    }
+
+                                                                    List.Remove(List[i]);
+                                                                    break;
+                                                                case 1:
+                                                                    actual = false;
+                                                                    for (int k = 0; k < List.Count; k++)
+                                                                    {
+                                                                        if (List[i].Day == List[k].Day && List[i].LesNum == List[k].LesNum && List[k].NumSubGroup == 0)
+                                                                        {
+                                                                            <div class="col text-center alesson">
+                                                                                @List[k].LesName
+                                                                                @{if (!List[k].LesName.Equals(""))
+                                                                                    {
+                                                                                        <br>
+                                                                                    }
+                                                                                }
+                                                                                @List[k].LecName
+                                                                                @{if (!List[k].LecName.Equals(""))
+                                                                                    {
+                                                                                        <br>
+                                                                                    }
+                                                                                }
+                                                                                @List[k].Room
+                                                                                @{if (!List[k].Room.Equals(""))
+                                                                                    {
+                                                                                        <br>
+                                                                                    }
+                                                                                }
+
+                                                                                @List[i].Build
+                                                                                @{if (!List[k].Build.Equals(""))
+                                                                                    {
+                                                                                        <br>
+                                                                                    }
+                                                                                }
+                                                                                @List[k].LesType
+                                                                                @{if (!List[k].LesType.Equals(""))
+                                                                                    {
+                                                                                        <br>
+                                                                                    }
+                                                                                }
+                                                                            </div>
+
+                                                                            actual = true;
+                                                                            List.Remove(List[k]);
+                                                                        }
+                                                                    }
+                                                                    if (actual == false)
+                                                                    {
+                                                                        <div class="col text-center dlesson"></div>
+                                                                    }
+
+                                                                    <div class="col text-center alesson">
+                                                                        @List[i].LesName
+                                                                        @{if (!List[i].LesName.Equals(""))
+                                                                            {
+                                                                                <br>
+                                                                            }
+                                                                        }
+                                                                        @List[i].LecName
+                                                                        @{if (!List[i].LecName.Equals(""))
+                                                                            {
+                                                                                <br>
+                                                                            }
+                                                                        }
+                                                                        @List[i].Room
+                                                                        @{if (!List[i].Room.Equals(""))
+                                                                            {
+                                                                                <br>
+                                                                            }
+                                                                        }
+
+                                                                        @List[i].Build
+                                                                        @{if (!List[i].Build.Equals(""))
+                                                                            {
+                                                                                <br>
+                                                                            }
+                                                                        }
+                                                                        @List[i].LesType
+                                                                        @{if (!List[i].LesType.Equals(""))
+                                                                            {
+                                                                                <br>
+                                                                            }
+                                                                        }
+                                                                    </div>
+
+
+                                                                    List.Remove(List[i]);
+                                                                    break;
+
+                                                            }
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            break;
+                                    }
+                                    break;
+                                case false:
+                                            <div class="row">
+                                                <div class="col-md-1">
+                                                    <p>@List[i].LesNum</p>
+                                                </div>
+                                                <div class="col-md-11 lesson-container">
+                                                    @{
+                                                        switch (List[i].TimeSet)
+                                                        {
+                                                            case 0:      // по чисельнику
+                                                                <div class="col-12">
+                                                                    @{
+                                                                        switch (List[i].AllGroup)
+                                                                        {
+                                                                            case true:
+
+                                                                                <div class="text-center alesson">
+                                                                                    @List[i].LesName
+                                                                                    @{if (!List[i].LesName.Equals(""))
+                                                                                        {
+                                                                                            <br>
+                                                                                        }
+                                                                                    }
+                                                                                    @List[i].LecName
+                                                                                    @{if (!List[i].LecName.Equals(""))
+                                                                                        {
+                                                                                            <br>
+                                                                                        }
+                                                                                    }
+                                                                                    @List[i].Room
+                                                                                    @{if (!List[i].Room.Equals(""))
+                                                                                        {
+                                                                                            <br>
+                                                                                        }
+                                                                                    }
+
+                                                                                    @List[i].Build
+                                                                                    @{if (!List[i].Build.Equals(""))
+                                                                                        {
+                                                                                            <br>
+                                                                                        }
+                                                                                    }
+                                                                                    @List[i].LesType
+                                                                                    @{if (!List[i].LesType.Equals(""))
+                                                                                        {
+                                                                                            <br>
+                                                                                        }
+                                                                                    }
+                                                                                </div>
+
+
+                                                                                List.Remove(List[i]);
+                                                                                break;
+                                                                            case false:
+
+
+                                                                                <div class="row">
+                                                                                    @{
+                                                                                        switch (List[i].NumSubGroup)
+                                                                                        {
+                                                                                            case 0:
+
+                                                                                                <div class="col text-center alesson">
+                                                                                                    @List[i].LesName
+                                                                                                    @{if (!List[i].LesName.Equals(""))
+                                                                                                        {
+                                                                                                            <br>
+                                                                                                        }
+                                                                                                    }
+                                                                                                    @List[i].LecName
+                                                                                                    @{if (!List[i].LecName.Equals(""))
+                                                                                                        {
+                                                                                                            <br>
+                                                                                                        }
+                                                                                                    }
+                                                                                                    @List[i].Room
+                                                                                                    @{if (!List[i].Room.Equals(""))
+                                                                                                        {
+                                                                                                            <br>
+                                                                                                        }
+                                                                                                    }
+
+                                                                                                    @List[i].Build
+                                                                                                    @{if (!List[i].Build.Equals(""))
+                                                                                                        {
+                                                                                                            <br>
+                                                                                                        }
+                                                                                                    }
+                                                                                                    @List[i].LesType
+                                                                                                    @{if (!List[i].LesType.Equals(""))
+                                                                                                        {
+                                                                                                            <br>
+                                                                                                        }
+                                                                                                    }
+                                                                                                </div>
+
+
+
+                                                                                                bool actual = false;
+                                                                                                for (int k = 0; k < List.Count; k++)
+                                                                                                {
+                                                                                                    if (List[i].Day == List[k].Day && List[i].AllTime==false && List[i].TimeSet==0 && List[i].LesNum == List[k].LesNum && List[k].NumSubGroup == 1)
+                                                                                                    {
+                                                                                                        <div class="col text-center alesson">
+                                                                                                            @List[k].LesName
+                                                                                                            @{if (!List[k].LesName.Equals(""))
+                                                                                                                {
+                                                                                                                    <br>
+                                                                                                                }
+                                                                                                            }
+                                                                                                            @List[k].LecName
+                                                                                                            @{if (!List[k].LecName.Equals(""))
+                                                                                                                {
+                                                                                                                    <br>
+                                                                                                                }
+                                                                                                            }
+                                                                                                            @List[k].Room
+                                                                                                            @{if (!List[k].Room.Equals(""))
+                                                                                                                {
+                                                                                                                    <br>
+                                                                                                                }
+                                                                                                            }
+
+                                                                                                            @List[k].Build
+                                                                                                            @{if (!List[k].Build.Equals(""))
+                                                                                                                {
+                                                                                                                    <br>
+                                                                                                                }
+                                                                                                            }
+                                                                                                            @List[k].LesType
+                                                                                                            @{if (!List[k].LesType.Equals(""))
+                                                                                                                {
+                                                                                                                    <br>
+                                                                                                                }
+                                                                                                            }
+                                                                                                        </div>
+
+                                                                                                        actual = true;
+                                                                                                        List.Remove(List[k]);
+                                                                                                    }
+                                                                                                }
+                                                                                                if (actual == false)
+                                                                                                {
+                                                                                                        <div class="col text-center dlesson">
+                                                                                                            <br />
+                                                                                                            <br />
+                                                                                                            <br />
+                                                                                                            <br />
+                                                                                                            <br />
+                                                                                                        </div>
+                                                                                                }
+
+                                                                                                List.Remove(List[i]);
+                                                                                                break;
+                                                                                            case 1:
+                                                                                                actual = false;
+                                                                                                for (int k = 0; k < List.Count; k++)
+                                                                                                {
+                                                                                                    if (List[i].Day == List[k].Day && List[i].AllTime==false && List[i].TimeSet==0 && List[i].LesNum == List[k].LesNum && List[k].NumSubGroup == 0)
+                                                                                                    {
+                                                                                                        <div class="col text-center alesson">
+                                                                                                            @List[k].LesName
+                                                                                                            @{if (!List[k].LesName.Equals(""))
+                                                                                                                {
+                                                                                                                    <br>
+                                                                                                                }
+                                                                                                            }
+                                                                                                            @List[k].LecName
+                                                                                                            @{if (!List[k].LecName.Equals(""))
+                                                                                                                {
+                                                                                                                    <br>
+                                                                                                                }
+                                                                                                            }
+                                                                                                            @List[k].Room
+                                                                                                            @{if (!List[k].Room.Equals(""))
+                                                                                                                {
+                                                                                                                    <br>
+                                                                                                                }
+                                                                                                            }
+
+                                                                                                            @List[k].Build
+                                                                                                            @{if (!List[k].Build.Equals(""))
+                                                                                                                {
+                                                                                                                    <br>
+                                                                                                                }
+                                                                                                            }
+                                                                                                            @List[k].LesType
+                                                                                                            @{if (!List[k].LesType.Equals(""))
+                                                                                                                {
+                                                                                                                    <br>
+                                                                                                                }
+                                                                                                            }
+                                                                                                        </div>
+
+                                                                                                        actual = true;
+                                                                                                        List.Remove(List[k]);
+                                                                                                    }
+                                                                                                }
+                                                                                                if (actual == false)
+                                                                                                {
+                                                                                                        <div class="col text-center dlesson">
+                                                                                                            <br />
+                                                                                                            <br />
+                                                                                                            <br />
+                                                                                                            <br />
+                                                                                                            <br />
+                                                                                                        </div>
+                                                                                                }
+
+                                                                                                <div class="col text-center alesson">
+                                                                                                    @List[i].LesName
+                                                                                                    @{if (!List[i].LesName.Equals(""))
+                                                                                                        {
+                                                                                                            <br>
+                                                                                                        }
+                                                                                                    }
+                                                                                                    @List[i].LecName
+                                                                                                    @{if (!List[i].LecName.Equals(""))
+                                                                                                        {
+                                                                                                            <br>
+                                                                                                        }
+                                                                                                    }
+                                                                                                    @List[i].Room
+                                                                                                    @{if (!List[i].Room.Equals(""))
+                                                                                                        {
+                                                                                                            <br>
+                                                                                                        }
+                                                                                                    }
+
+                                                                                                    @List[i].Build
+                                                                                                    @{if (!List[i].Build.Equals(""))
+                                                                                                        {
+                                                                                                            <br>
+                                                                                                        }
+                                                                                                    }
+                                                                                                    @List[i].LesType
+                                                                                                    @{if (!List[i].LesType.Equals(""))
+                                                                                                        {
+                                                                                                            <br>
+                                                                                                        }
+                                                                                                    }
+                                                                                                </div>
+
+
+                                                                                                List.Remove(List[i]);
+                                                                                                break;
+
+                                                                                        }
+                                                                                    }
+                                                                                </div>
+
+                                                                                break;
+                                                                        }
+                                                                    }
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    @{
+                                                                        bool actuall = false;
+                                                                        for (int l = 0; l < List.Count; l++)
+                                                                        {
+                                                                            if (List[i].Day == List[l].Day && List[i].LesNum == List[l].LesNum && List[l].TimeSet == 1)
+                                                                            {
+
+                                                                                switch (List[l].AllGroup)
+                                                                                {
+                                                                                    case true:
+
+                                                                                        <div class="text-center alesson">
+                                                                                            @List[l].LesName
+                                                                                            @{if (!List[l].LesName.Equals(""))
+                                                                                                {
+                                                                                                    <br>
+                                                                                                }
+                                                                                            }
+                                                                                            @List[l].LecName
+                                                                                            @{if (!List[l].LecName.Equals(""))
+                                                                                                {
+                                                                                                    <br>
+                                                                                                }
+                                                                                            }
+                                                                                            @List[l].Room
+                                                                                            @{if (!List[l].Room.Equals(""))
+                                                                                                {
+                                                                                                    <br>
+                                                                                                }
+                                                                                            }
+
+                                                                                            @List[l].Build
+                                                                                            @{if (!List[l].Build.Equals(""))
+                                                                                                {
+                                                                                                    <br>
+                                                                                                }
+                                                                                            }
+                                                                                            @List[l].LesType
+                                                                                            @{if (!List[l].LesType.Equals(""))
+                                                                                                {
+                                                                                                    <br>
+                                                                                                }
+                                                                                            }
+                                                                                        </div>
+
+
+                                                                                        List.Remove(List[l]);
+                                                                                        break;
+                                                                                    case false:
+
+
+                                                                                        <div class="row">
+                                                                                            @{
+                                                                                                switch (List[l].NumSubGroup)
+                                                                                                {
+                                                                                                    case 0:
+
+                                                                                                        <div class="col text-center alesson">
+                                                                                                            @List[l].LesName
+                                                                                                            @{if (!List[l].LesName.Equals(""))
+                                                                                                                {
+                                                                                                                    <br>
+                                                                                                                }
+                                                                                                            }
+                                                                                                            @List[l].LecName
+                                                                                                            @{if (!List[l].LecName.Equals(""))
+                                                                                                                {
+                                                                                                                    <br>
+                                                                                                                }
+                                                                                                            }
+                                                                                                            @List[l].Room
+                                                                                                            @{if (!List[l].Room.Equals(""))
+                                                                                                                {
+                                                                                                                    <br>
+                                                                                                                }
+                                                                                                            }
+
+                                                                                                            @List[l].Build
+                                                                                                            @{if (!List[l].Build.Equals(""))
+                                                                                                                {
+                                                                                                                    <br>
+                                                                                                                }
+                                                                                                            }
+                                                                                                            @List[l].LesType
+                                                                                                            @{if (!List[l].LesType.Equals(""))
+                                                                                                                {
+                                                                                                                    <br>
+                                                                                                                }
+                                                                                                            }
+                                                                                                        </div>
+
+
+
+                                                                                                                bool actual = false;
+                                                                                                                for (int k = 0; k < List.Count; k++)
+                                                                                                                {
+                                                                                                                    if (List[l].Day == List[k].Day && List[i].AllTime == false && List[i].TimeSet == 1 && List[l].LesNum == List[k].LesNum && List[k].NumSubGroup == 1)
+                                                                                                                    {
+                                                                                                                <div class="col text-center alesson">
+                                                                                                                    @List[k].LesName
+                                                                                                                    @{if (!List[k].LesName.Equals(""))
+                                                                                                                        {
+                                                                                                                            <br>
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                    @List[k].LecName
+                                                                                                                    @{if (!List[k].LecName.Equals(""))
+                                                                                                                        {
+                                                                                                                            <br>
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                    @List[k].Room
+                                                                                                                    @{if (!List[k].Room.Equals(""))
+                                                                                                                        {
+                                                                                                                            <br>
+                                                                                                                        }
+                                                                                                                    }
+
+                                                                                                                    @List[k].Build
+                                                                                                                    @{if (!List[k].Build.Equals(""))
+                                                                                                                        {
+                                                                                                                            <br>
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                    @List[k].LesType
+                                                                                                                    @{if (!List[k].LesType.Equals(""))
+                                                                                                                        {
+                                                                                                                            <br>
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                </div>
+
+                                                                                                                actual = true;
+                                                                                                                List.Remove(List[k]);
+                                                                                                            }
+                                                                                                        }
+                                                                                                        if (actual == false)
+                                                                                                        {
+                                                                                                                <div class="col text-center dlesson">
+                                                                                                                    <br />
+                                                                                                                    <br />
+                                                                                                                    <br />
+                                                                                                                    <br />
+                                                                                                                    <br />
+                                                                                                                </div>
+                                                                                                                            }
+
+                                                                                                                            List.Remove(List[l]);
+                                                                                                                            break;
+                                                                                                                        case 1:
+                                                                                                                            actual = false;
+                                                                                                                            for (int k = 0; k < List.Count; k++)
+                                                                                                                            {
+                                                                                                                                if (List[l].Day == List[k].Day && List[i].AllTime == false && List[i].TimeSet == 1 && List[l].LesNum == List[k].LesNum && List[k].NumSubGroup == 0)
+                                                                                                                                {
+                                                                                                                <div class="col text-center alesson">
+                                                                                                                    @List[k].LesName
+                                                                                                                    @{if (!List[k].LesName.Equals(""))
+                                                                                                                        {
+                                                                                                                            <br>
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                    @List[k].LecName
+                                                                                                                    @{if (!List[k].LecName.Equals(""))
+                                                                                                                        {
+                                                                                                                            <br>
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                    @List[k].Room
+                                                                                                                    @{if (!List[k].Room.Equals(""))
+                                                                                                                        {
+                                                                                                                            <br>
+                                                                                                                        }
+                                                                                                                    }
+
+                                                                                                                    @List[k].Build
+                                                                                                                    @{if (!List[k].Build.Equals(""))
+                                                                                                                        {
+                                                                                                                            <br>
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                    @List[k].LesType
+                                                                                                                    @{if (!List[k].LesType.Equals(""))
+                                                                                                                        {
+                                                                                                                            <br>
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                </div>
+
+                                                                                                                actual = true;
+                                                                                                                List.Remove(List[k]);
+                                                                                                            }
+                                                                                                        }
+                                                                                                        if (actual == false)
+                                                                                                        {
+                                                                                                                <div class="col text-center dlesson">
+                                                                                                                    <br />
+                                                                                                                    <br />
+                                                                                                                    <br />
+                                                                                                                    <br />
+                                                                                                                    <br />
+                                                                                                                </div>
+                                                                                                        }
+
+                                                                                                        <div class="col text-center alesson">
+                                                                                                            @List[l].LesName
+                                                                                                            @{if (!List[l].LesName.Equals(""))
+                                                                                                                {
+                                                                                                                    <br>
+                                                                                                                }
+                                                                                                            }
+                                                                                                            @List[l].LecName
+                                                                                                            @{if (!List[l].LecName.Equals(""))
+                                                                                                                {
+                                                                                                                    <br>
+                                                                                                                }
+                                                                                                            }
+                                                                                                            @List[l].Room
+                                                                                                            @{if (!List[l].Room.Equals(""))
+                                                                                                                {
+                                                                                                                    <br>
+                                                                                                                }
+                                                                                                            }
+
+                                                                                                            @List[l].Build
+                                                                                                            @{if (!List[l].Build.Equals(""))
+                                                                                                                {
+                                                                                                                    <br>
+                                                                                                                }
+                                                                                                            }
+                                                                                                            @List[l].LesType
+                                                                                                            @{if (!List[l].LesType.Equals(""))
+                                                                                                                {
+                                                                                                                    <br>
+                                                                                                                }
+                                                                                                            }
+                                                                                                        </div>
+
+
+                                                                                                        List.Remove(List[l]);
+                                                                                                        break;
+
+                                                                                                }
+                                                                                            }
+                                                                                        </div>
+
+                                                                                        break;
+                                                                                }
+
+                                                                                actuall = true;
+                                                                                List.Remove(List[l]);
+                                                                            }
+                                                                        }
+                                                                        if (actuall == false)
+                                                                        {
+                                                                                        <div class="col text-center dlesson">
+                                                                                            <br />
+                                                                                            <br />
+                                                                                            <br />
+                                                                                            <br />
+                                                                                            <br />
+                                                                                        </div>
+                                                                        }
+                                                                    }
+                                                                </div>
+                                                                break;
+                                                            case 1:      // по знаменнику
+                                                                <div class="col-12">
+                                                                    @{
+                                                                        actuall = false;
+                                                                        for (int l = 0; l < List.Count; l++)
+                                                                        {
+                                                                            if (List[i].Day == List[l].Day && List[i].LesNum == List[l].LesNum && List[l].TimeSet == 0)
+                                                                            {
+
+                                                                                switch (List[l].AllGroup)
+                                                                                {
+                                                                                    case true:
+
+                                                                                        <div class="text-center alesson">
+                                                                                            @List[l].LesName
+                                                                                            @{if (!List[l].LesName.Equals(""))
+                                                                                                {
+                                                                                                    <br>
+                                                                                                }
+                                                                                            }
+                                                                                            @List[l].LecName
+                                                                                            @{if (!List[l].LecName.Equals(""))
+                                                                                                {
+                                                                                                    <br>
+                                                                                                }
+                                                                                            }
+                                                                                            @List[l].Room
+                                                                                            @{if (!List[l].Room.Equals(""))
+                                                                                                {
+                                                                                                    <br>
+                                                                                                }
+                                                                                            }
+
+                                                                                            @List[l].Build
+                                                                                            @{if (!List[l].Build.Equals(""))
+                                                                                                {
+                                                                                                    <br>
+                                                                                                }
+                                                                                            }
+                                                                                            @List[l].LesType
+                                                                                            @{if (!List[l].LesType.Equals(""))
+                                                                                                {
+                                                                                                    <br>
+                                                                                                }
+                                                                                            }
+                                                                                        </div>
+
+
+                                                                                        List.Remove(List[l]);
+                                                                                        break;
+                                                                                    case false:
+
+
+                                                                                        <div class="row">
+                                                                                            @{
+                                                                                                switch (List[l].NumSubGroup)
+                                                                                                {
+                                                                                                    case 0:
+
+                                                                                                        <div class="col text-center alesson">
+                                                                                                            @List[l].LesName
+                                                                                                            @{if (!List[l].LesName.Equals(""))
+                                                                                                                {
+                                                                                                                    <br>
+                                                                                                                }
+                                                                                                            }
+                                                                                                            @List[l].LecName
+                                                                                                            @{if (!List[l].LecName.Equals(""))
+                                                                                                                {
+                                                                                                                    <br>
+                                                                                                                }
+                                                                                                            }
+                                                                                                            @List[l].Room
+                                                                                                            @{if (!List[l].Room.Equals(""))
+                                                                                                                {
+                                                                                                                    <br>
+                                                                                                                }
+                                                                                                            }
+
+                                                                                                            @List[l].Build
+                                                                                                            @{if (!List[l].Build.Equals(""))
+                                                                                                                {
+                                                                                                                    <br>
+                                                                                                                }
+                                                                                                            }
+                                                                                                            @List[l].LesType
+                                                                                                            @{if (!List[l].LesType.Equals(""))
+                                                                                                                {
+                                                                                                                    <br>
+                                                                                                                }
+                                                                                                            }
+                                                                                                        </div>
+
+
+
+                                                                                                        bool actual = false;
+                                                                                                        for (int k = 0; k < List.Count; k++)
+                                                                                                        {
+                                                                                                            if (List[l].Day == List[k].Day && List[l].LesNum == List[k].LesNum && List[k].NumSubGroup == 1)
+                                                                                                            {
+                                                                                                                <div class="col text-center alesson">
+                                                                                                                    @List[k].LesName
+                                                                                                                    @{if (!List[k].LesName.Equals(""))
+                                                                                                                        {
+                                                                                                                            <br>
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                    @List[k].LecName
+                                                                                                                    @{if (!List[k].LecName.Equals(""))
+                                                                                                                        {
+                                                                                                                            <br>
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                    @List[k].Room
+                                                                                                                    @{if (!List[k].Room.Equals(""))
+                                                                                                                        {
+                                                                                                                            <br>
+                                                                                                                        }
+                                                                                                                    }
+
+                                                                                                                    @List[k].Build
+                                                                                                                    @{if (!List[k].Build.Equals(""))
+                                                                                                                        {
+                                                                                                                            <br>
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                    @List[k].LesType
+                                                                                                                    @{if (!List[k].LesType.Equals(""))
+                                                                                                                        {
+                                                                                                                            <br>
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                </div>
+
+                                                                                                                actual = true;
+                                                                                                                List.Remove(List[k]);
+                                                                                                            }
+                                                                                                        }
+                                                                                                        if (actual == false)
+                                                                                                        {
+                                                                                                                <div class="col text-center dlesson">
+                                                                                                                    <br />
+                                                                                                                    <br />
+                                                                                                                    <br />
+                                                                                                                    <br />
+                                                                                                                    <br />
+                                                                                                                </div>
+                                                                                                        }
+
+                                                                                                        List.Remove(List[l]);
+                                                                                                        break;
+                                                                                                    case 1:
+                                                                                                        actual = false;
+                                                                                                        for (int k = 0; k < List.Count; k++)
+                                                                                                        {
+                                                                                                            if (List[l].Day == List[k].Day && List[l].LesNum == List[k].LesNum && List[k].NumSubGroup == 0)
+                                                                                                            {
+                                                                                                                <div class="col text-center alesson">
+                                                                                                                    @List[k].LesName
+                                                                                                                    @{if (!List[k].LesName.Equals(""))
+                                                                                                                        {
+                                                                                                                            <br>
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                    @List[k].LecName
+                                                                                                                    @{if (!List[k].LecName.Equals(""))
+                                                                                                                        {
+                                                                                                                            <br>
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                    @List[k].Room
+                                                                                                                    @{if (!List[k].Room.Equals(""))
+                                                                                                                        {
+                                                                                                                            <br>
+                                                                                                                        }
+                                                                                                                    }
+
+                                                                                                                    @List[k].Build
+                                                                                                                    @{if (!List[k].Build.Equals(""))
+                                                                                                                        {
+                                                                                                                            <br>
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                    @List[k].LesType
+                                                                                                                    @{if (!List[k].LesType.Equals(""))
+                                                                                                                        {
+                                                                                                                            <br>
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                </div>
+
+                                                                                                                actual = true;
+                                                                                                                List.Remove(List[k]);
+                                                                                                            }
+                                                                                                        }
+                                                                                                        if (actual == false)
+                                                                                                        {
+                                                                                                                <div class="col text-center dlesson">
+                                                                                                                    <br />
+                                                                                                                    <br />
+                                                                                                                    <br />
+                                                                                                                    <br />
+                                                                                                                    <br />
+                                                                                                                </div>
+                                                                                                        }
+
+                                                                                                        <div class="col text-center alesson">
+                                                                                                            @List[l].LesName
+                                                                                                            @{if (!List[l].LesName.Equals(""))
+                                                                                                                {
+                                                                                                                    <br>
+                                                                                                                }
+                                                                                                            }
+                                                                                                            @List[l].LecName
+                                                                                                            @{if (!List[l].LecName.Equals(""))
+                                                                                                                {
+                                                                                                                    <br>
+                                                                                                                }
+                                                                                                            }
+                                                                                                            @List[l].Room
+                                                                                                            @{if (!List[l].Room.Equals(""))
+                                                                                                                {
+                                                                                                                    <br>
+                                                                                                                }
+                                                                                                            }
+
+                                                                                                            @List[l].Build
+                                                                                                            @{if (!List[l].Build.Equals(""))
+                                                                                                                {
+                                                                                                                    <br>
+                                                                                                                }
+                                                                                                            }
+                                                                                                            @List[l].LesType
+                                                                                                            @{if (!List[l].LesType.Equals(""))
+                                                                                                                {
+                                                                                                                    <br>
+                                                                                                                }
+                                                                                                            }
+                                                                                                        </div>
+
+
+                                                                                                        List.Remove(List[l]);
+                                                                                                        break;
+
+                                                                                                }
+                                                                                            }
+                                                                                        </div>
+
+                                                                                        break;
+                                                                                }
+
+                                                                                actuall = true;
+                                                                                
+                                                                            }
+                                                                        }
+                                                                        if (actuall == false)
+                                                                        {
+                                                                                        <div class="col text-center dlesson">
+                                                                                            <br />
+                                                                                            <br />
+                                                                                            <br />
+                                                                                            <br />
+                                                                                            <br />
+                                                                                        </div>
+                                                                        }
+                                                                    }
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    @{
+                                                                        switch (List[i].AllGroup)
+                                                                        {
+                                                                            case true:
+
+                                                                                <div class="text-center alesson">
+                                                                                    @List[i].LesName
+                                                                                    @{if (!List[i].LesName.Equals(""))
+                                                                                        {
+                                                                                            <br>
+                                                                                        }
+                                                                                    }
+                                                                                    @List[i].LecName
+                                                                                    @{if (!List[i].LecName.Equals(""))
+                                                                                        {
+                                                                                            <br>
+                                                                                        }
+                                                                                    }
+                                                                                    @List[i].Room
+                                                                                    @{if (!List[i].Room.Equals(""))
+                                                                                        {
+                                                                                            <br>
+                                                                                        }
+                                                                                    }
+
+                                                                                    @List[i].Build
+                                                                                    @{if (!List[i].Build.Equals(""))
+                                                                                        {
+                                                                                            <br>
+                                                                                        }
+                                                                                    }
+                                                                                    @List[i].LesType
+                                                                                    @{if (!List[i].LesType.Equals(""))
+                                                                                        {
+                                                                                            <br>
+                                                                                        }
+                                                                                    }
+                                                                                </div>
+
+
+                                                                                List.Remove(List[i]);
+                                                                                break;
+                                                                            case false:
+
+
+                                                                                <div class="row">
+                                                                                    @{
+                                                                                        switch (List[i].NumSubGroup)
+                                                                                        {
+                                                                                            case 0:
+
+                                                                                                <div class="col text-center alesson">
+                                                                                                    @List[i].LesName
+                                                                                                    @{if (!List[i].LesName.Equals(""))
+                                                                                                        {
+                                                                                                            <br>
+                                                                                                        }
+                                                                                                    }
+                                                                                                    @List[i].LecName
+                                                                                                    @{if (!List[i].LecName.Equals(""))
+                                                                                                        {
+                                                                                                            <br>
+                                                                                                        }
+                                                                                                    }
+                                                                                                    @List[i].Room
+                                                                                                    @{if (!List[i].Room.Equals(""))
+                                                                                                        {
+                                                                                                            <br>
+                                                                                                        }
+                                                                                                    }
+
+                                                                                                    @List[i].Build
+                                                                                                    @{if (!List[i].Build.Equals(""))
+                                                                                                        {
+                                                                                                            <br>
+                                                                                                        }
+                                                                                                    }
+                                                                                                    @List[i].LesType
+                                                                                                    @{if (!List[i].LesType.Equals(""))
+                                                                                                        {
+                                                                                                            <br>
+                                                                                                        }
+                                                                                                    }
+                                                                                                </div>
+
+
+
+                                                                                                bool actual = false;
+                                                                                                for (int k = 0; k < List.Count; k++)
+                                                                                                {
+                                                                                                    if (List[i].Day == List[k].Day && List[i].LesNum == List[k].LesNum && List[k].NumSubGroup == 1)
+                                                                                                    {
+                                                                                                        <div class="col text-center alesson">
+                                                                                                            @List[k].LesName
+                                                                                                            @{if (!List[k].LesName.Equals(""))
+                                                                                                                {
+                                                                                                                    <br>
+                                                                                                                }
+                                                                                                            }
+                                                                                                            @List[k].LecName
+                                                                                                            @{if (!List[k].LecName.Equals(""))
+                                                                                                                {
+                                                                                                                    <br>
+                                                                                                                }
+                                                                                                            }
+                                                                                                            @List[k].Room
+                                                                                                            @{if (!List[k].Room.Equals(""))
+                                                                                                                {
+                                                                                                                    <br>
+                                                                                                                }
+                                                                                                            }
+
+                                                                                                            @List[k].Build
+                                                                                                            @{if (!List[k].Build.Equals(""))
+                                                                                                                {
+                                                                                                                    <br>
+                                                                                                                }
+                                                                                                            }
+                                                                                                            @List[k].LesType
+                                                                                                            @{if (!List[k].LesType.Equals(""))
+                                                                                                                {
+                                                                                                                    <br>
+                                                                                                                }
+                                                                                                            }
+                                                                                                        </div>
+
+                                                                                                        actual = true;
+                                                                                                        List.Remove(List[k]);
+                                                                                                    }
+                                                                                                }
+                                                                                                if (actual == false)
+                                                                                                {
+                                                                                                        <div class="col text-center dlesson">
+                                                                                                            <br />
+                                                                                                            <br />
+                                                                                                            <br />
+                                                                                                            <br />
+                                                                                                            <br />
+                                                                                                        </div>
+                                                                                                }
+
+                                                                                                List.Remove(List[i]);
+                                                                                                break;
+                                                                                            case 1:
+                                                                                                actual = false;
+                                                                                                for (int k = 0; k < List.Count; k++)
+                                                                                                {
+                                                                                                    if (List[i].Day == List[k].Day && List[i].LesNum == List[k].LesNum && List[k].NumSubGroup == 0)
+                                                                                                    {
+                                                                                                        <div class="col text-center alesson">
+                                                                                                            @List[k].LesName
+                                                                                                            @{if (!List[k].LesName.Equals(""))
+                                                                                                                {
+                                                                                                                    <br>
+                                                                                                                }
+                                                                                                            }
+                                                                                                            @List[k].LecName
+                                                                                                            @{if (!List[k].LecName.Equals(""))
+                                                                                                                {
+                                                                                                                    <br>
+                                                                                                                }
+                                                                                                            }
+                                                                                                            @List[k].Room
+                                                                                                            @{if (!List[k].Room.Equals(""))
+                                                                                                                {
+                                                                                                                    <br>
+                                                                                                                }
+                                                                                                            }
+
+                                                                                                            @List[k].Build
+                                                                                                            @{if (!List[k].Build.Equals(""))
+                                                                                                                {
+                                                                                                                    <br>
+                                                                                                                }
+                                                                                                            }
+                                                                                                            @List[k].LesType
+                                                                                                            @{if (!List[k].LesType.Equals(""))
+                                                                                                                {
+                                                                                                                    <br>
+                                                                                                                }
+                                                                                                            }
+                                                                                                        </div>
+
+                                                                                                        actual = true;
+                                                                                                        List.Remove(List[k]);
+                                                                                                    }
+                                                                                                }
+                                                                                                if (actual == false)
+                                                                                                {
+                                                                                                        <div class="col text-center dlesson">
+                                                                                                            <br />
+                                                                                                            <br />
+                                                                                                            <br />
+                                                                                                            <br />
+                                                                                                            <br />
+                                                                                                        </div>
+                                                                                                }
+
+                                                                                                <div class="col text-center alesson">
+                                                                                                    @List[i].LesName
+                                                                                                    @{if (!List[i].LesName.Equals(""))
+                                                                                                        {
+                                                                                                            <br>
+                                                                                                        }
+                                                                                                    }
+                                                                                                    @List[i].LecName
+                                                                                                    @{if (!List[i].LecName.Equals(""))
+                                                                                                        {
+                                                                                                            <br>
+                                                                                                        }
+                                                                                                    }
+                                                                                                    @List[i].Room
+                                                                                                    @{if (!List[i].Room.Equals(""))
+                                                                                                        {
+                                                                                                            <br>
+                                                                                                        }
+                                                                                                    }
+
+                                                                                                    @List[i].Build
+                                                                                                    @{if (!List[i].Build.Equals(""))
+                                                                                                        {
+                                                                                                            <br>
+                                                                                                        }
+                                                                                                    }
+                                                                                                    @List[i].LesType
+                                                                                                    @{if (!List[i].LesType.Equals(""))
+                                                                                                        {
+                                                                                                            <br>
+                                                                                                        }
+                                                                                                    }
+                                                                                                </div>
+
+
+                                                                                                List.Remove(List[i]);
+                                                                                                break;
+
+                                                                                        }
+                                                                                    }
+                                                                                </div>
+
+                                                                                break;
+                                                                        }
+                                                                    }
+                                                                </div>
+                                                                break;
+                                                        }
+                                                    }
+                                                </div>
+                                            </div>
+                                    break;
+
+                            }
+                        }
+                    }
+                    countLes++;
+                }
+                countLes = 1;
+            }
+        </div>
+                countDay++;
+                                                                                }
+
+                                                                            }
+
+    </div>
+
+    <div class="col-md-2"></div>
+</div>
+        
+
+
